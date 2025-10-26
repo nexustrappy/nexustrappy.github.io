@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MultiFermi - La Tua Scuola, Reimaginata</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: #007aff;
+    --primary-dark: #0a84ff;
+    --text-light: #1d1d1f;
+    --text-dark: #f5f5f7;
+    --bg-light: #ffffff;
+    --bg-dark: #000000;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #ffffff;
+    color: var(--text-light);
+    overflow-x: hidden;
+  }
+  
+  body.dark {
+    background: #000000;
+    color: var(--text-dark);
+  }
+  
+  /* NAVIGATION */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  body.dark nav {
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  nav.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: -1px;
+  }
+  
+  body.dark .logo {
+    color: var(--text-dark);
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  body.dark .nav-links a {
+    color: var(--text-dark);
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  
+  .theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  body.dark .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+  }
+  
+  .cta-btn {
+    background: var(--primary);
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+  }
+  
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 122, 255, 0.4);
+  }
+  
+  /* HERO SECTION */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+  }
+  
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  .shape-1 {
+    width: 500px;
+    height: 500px;
+    top: -200px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .shape-2 {
+    width: 300px;
+    height: 300px;
+    bottom: -100px;
+    left: -50px;
+    animation: float 6s ease-in-out infinite 1s;
+  }
+  
+  .shape-3 {
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+  
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 900px;
+    padding: 2rem;
+    animation: fadeInUp 1s ease;
+  }
+  
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: white;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    animation: fadeInUp 1s ease 0.2s both;
+  }
+  
+  .hero-tagline {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+    letter-spacing: -1px;
+    animation: fadeInUp 1s ease 0.3s both;
+  }
+  
+  .hero-tagline span {
+    display: block;
+    line-height: 1.3;
+  }
+  
+  .hero p {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    animation: fadeInUp 1s ease 0.4s both;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.6s both;
+  }
+  
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+  }
+  
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-4px);
+  }
+  
+  /* Coming Soon Badge */
+  .coming-soon-badge {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #667eea;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    border: 3px solid rgba(102, 126, 234, 0.3);
+  }
+  
+  .badge-icon {
+    font-size: 1.3rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .badge-text {
+    letter-spacing: 0.5px;
+  }
+  
+  .hero-image {
+    margin-top: 4rem;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .phone-mockup {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
+  }
+  
+  /* FEATURES SECTION */
+  .features {
+    padding: 8rem 2rem;
+    background: var(--bg-light);
+    position: relative;
+  }
+  
+  body.dark .features {
+    background: var(--bg-dark);
+  }
+  
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+  }
+  
+  .section-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    color: var(--primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  body.dark .section-tag {
+    color: var(--primary-dark);
+  }
+  
+  .section-header h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+  }
+  
+  .section-header p {
+    font-size: 1.2rem;
+    color: #6e6e73;
+    line-height: 1.6;
+  }
+  
+  body.dark .section-header p {
+    color: #a1a1a6;
+  }
+  
+  .features-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .feature-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  body.dark .feature-card {
+    background: #1c1c1e;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+  
+  .feature-card p {
+    color: #6e6e73;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+  
+  body.dark .feature-card p {
+    color: #a1a1a6;
+  }
+  
+  /* SHOWCASE SECTION */
+  .showcase {
+    padding: 8rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .showcase-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  
+  @media (max-width: 768px) {
+    .showcase-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+  
+  .showcase-text h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+  }
+  
+  .showcase-text p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .showcase-features {
+    list-style: none;
+  }
+  
+  .showcase-features li {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .showcase-features li::before {
+    content: '✓';
+    background: rgba(255, 255, 255, 0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .showcase-image {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .showcase-image img {
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* STATS SECTION */
+  .stats {
+    padding: 6rem 2rem;
+    background: var(--bg-light);
+  }
+  
+  body.dark .stats {
+    background: var(--bg-dark);
+  }
+  
+  .stats-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .stat-item h3 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-item p {
+    font-size: 1.1rem;
+    color: #6e6e73;
+    font-weight: 500;
+  }
+  
+  body.dark .stat-item p {
+    color: #a1a1a6;
+  }
+  
+  /* CTA SECTION */
+  .cta-section {
+    padding: 8rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-section h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+  }
+  
+  .cta-section p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* FOOTER */
+  footer {
+    background: var(--bg-light);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  body.dark footer {
+    background: var(--bg-dark);
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  footer p {
+    color: #6e6e73;
+    font-size: 0.95rem;
+  }
+  
+  body.dark footer p {
+    color: #a1a1a6;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  body.dark .footer-links a {
+    color: var(--primary-dark);
+  }
+  
+  .footer-links a:hover {
+    opacity: 0.7;
+  }
+  
+  /* Scroll animations */
+  .fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  .fade-in.visible {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+    
+    .mobile-menu {
+      display: block;
+    }
+    
+    .hamburger {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    
+    body.dark .hamburger {
+      color: var(--text-dark);
+    }
+  }
+</style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-content">
+      <div class="logo">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Logo" class="logo-img">
+        <span>MultiFermi</span>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Funzionalità</a>
+        <a href="#showcase">Scopri</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+      <div class="mobile-menu">
+        <button class="hamburger">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-shape shape-1"></div>
+      <div class="hero-shape shape-2"></div>
+      <div class="hero-shape shape-3"></div>
+    </div>
+    
+    <div class="hero-content">
+      <h1>MultiFermi</h1>
+      <div class="hero-tagline">
+        <span>better.</span>
+        <span>smarter.</span>
+        <span>braver.</span>
+      </div>
+      <p>La tua scuola, reimaginata. Orari, variazioni e Moodle in un'unica app intelligente.</p>
+      
+      <div class="hero-buttons">
+        <div class="coming-soon-badge">
+          <span class="badge-icon">🚀</span>
+          <span class="badge-text">Coming Soon</span>
+        </div>
+        <a href="#features" class="btn-secondary">Scopri di Più</a>
+      </div>
+      
+      <div class="hero-image">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi App" class="phone-mockup">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features" id="features">
+    <div class="section-header fade-in">
+      <span class="section-tag">Funzionalità</span>
+      <h2>Tutto ciò di cui hai bisogno.<br>In un unico posto.</h2>
+      <p>MultiFermi combina potenza e semplicità per offrirti la migliore esperienza scolastica possibile.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📅</div>
+        <h3>Orario Intelligente</h3>
+        <p>Visualizza il tuo orario con indicatori in tempo reale. Lezione corrente evidenziata in rosso, prossima in verde.</p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">⚡</div>
+        <h3>Widget Istantaneo</h3>
+        <p>Vedi subito cosa stai facendo ora e cosa avrai dopo. Sempre aggiornato, sempre preciso.</p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔐</div>
+        <h3>Sicuro e Personale</h3>
+        <p>Account protetti da password. I tuoi dati sono al sicuro e accessibili solo a te.</p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">⚠️</div>
+        <h3>Variazioni Orario</h3>
+        <p>Resta aggiornato su tutte le modifiche all'orario direttamente dal calendario Google della scuola.</p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎓</div>
+        <h3>Moodle Integrato</h3>
+        <p>Accedi alla piattaforma Moodle senza uscire dall'app. Tutto a portata di tap.</p>
+      </div>
+      
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Modalità scura elegante per studiare anche di sera senza affaticare gli occhi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE SECTION -->
+  <section class="showcase" id="showcase">
+    <div class="showcase-content">
+      <div class="showcase-text">
+        <h2>Design iOS.<br>Velocità Android.</h2>
+        <p>MultiFermi è stato progettato con lo stesso livello di attenzione ai dettagli dei migliori prodotti Apple, ma funziona perfettamente su qualsiasi dispositivo.</p>
+        
+        <ul class="showcase-features">
+          <li>Animazioni fluide e naturali</li>
+          <li>Interfaccia intuitiva e moderna</li>
+          <li>Glassmorphism e gradienti accattivanti</li>
+          <li>Performance ottimizzate</li>
+          <li>Esperienza utente premium</li>
+        </ul>
+        
+        <div class="coming-soon-badge" style="display: inline-block;">
+          <span class="badge-icon">🚀</span>
+          <span class="badge-text">Coming Soon</span>
+        </div>
+      </div>
+      
+      <div class="showcase-image">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Interface">
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <h3>14+</h3>
+        <p>Classi Supportate</p>
+      </div>
+      
+      <div class="stat-item fade-in">
+        <h3>3</h3>
+        <p>Funzionalità Principali</p>
+      </div>
+      
+      <div class="stat-item fade-in">
+        <h3>100%</h3>
+        <p>Gratuito</p>
+      </div>
+      
+      <div class="stat-item fade-in">
+        <h3>24/7</h3>
+        <p>Sempre Disponibile</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section" id="download">
+    <h2>Pronto a rivoluzionare<br>la tua esperienza scolastica?</h2>
+    <p>Scarica MultiFermi oggi e scopri un modo completamente nuovo di vivere la scuola.</p>
+    
+    <div class="hero-buttons">
+      <div class="coming-soon-badge">
+        <span class="badge-icon">🚀</span>
+        <span class="badge-text">Coming Soon</span>
+      </div>
+      <a href="#features" class="btn-secondary">Scopri di Più</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 MultiFermi. Progettato con ❤️ per l'Istituto Fermi di Mantova.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Termini</a>
+      <a href="#">Supporto</a>
+      <a href="#">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    // Theme Toggle
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const themeBtn = document.querySelector('.theme-toggle');
+      themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+  </html>
