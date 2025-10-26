@@ -41,39 +41,6 @@
     to { opacity: 1; }
   }
   
-  @keyframes scaleIn {
-    from {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(60px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
   @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -82,12 +49,7 @@
   
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.05); }
-  }
-  
-  @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    50% { opacity: 0.85; transform: scale(1.02); }
   }
   
   body {
@@ -97,6 +59,7 @@
     background: #ffffff;
     color: var(--text-light);
     overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
   }
   
   body.dark {
@@ -178,21 +141,6 @@
     color: var(--primary);
   }
   
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: width 0.3s ease;
-  }
-  
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-  
   .theme-toggle {
     background: rgba(0, 0, 0, 0.05);
     border: none;
@@ -215,22 +163,6 @@
     transform: scale(1.1) rotate(15deg);
   }
   
-  .cta-btn {
-    background: var(--primary);
-    color: white;
-    padding: 0.7rem 1.5rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-  }
-  
-  .cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 122, 255, 0.4);
-  }
-  
   /* HERO SECTION */
   .hero {
     min-height: 100vh;
@@ -242,15 +174,7 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     background-size: 200% 200%;
     animation: gradient 15s ease infinite;
-  }
-  
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.1;
+    padding-top: 80px;
   }
   
   .hero-shape {
@@ -300,7 +224,6 @@
     color: white;
     letter-spacing: -2px;
     line-height: 1.1;
-    animation: fadeInUp 1s ease 0.2s both;
   }
   
   .hero-tagline {
@@ -309,7 +232,6 @@
     margin-bottom: 1.5rem;
     color: white;
     letter-spacing: -1px;
-    animation: fadeInUp 1s ease 0.3s both;
   }
   
   .hero-tagline span {
@@ -322,7 +244,6 @@
     color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2.5rem;
     font-weight: 500;
-    animation: fadeInUp 1s ease 0.4s both;
   }
   
   .hero-buttons {
@@ -330,47 +251,8 @@
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    animation: fadeInUp 1s ease 0.6s both;
   }
   
-  .btn-primary {
-    background: white;
-    color: var(--primary);
-    padding: 1rem 2.5rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-  }
-  
-  .btn-secondary {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-  }
-  
-  .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-4px);
-  }
-  
-  /* Coming Soon Badge */
   .coming-soon-badge {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
     padding: 1rem 2.5rem;
@@ -395,13 +277,32 @@
     letter-spacing: 0.5px;
   }
   
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-4px);
+  }
+  
   .hero-image {
     margin-top: 4rem;
     animation: float 6s ease-in-out infinite;
   }
   
   .phone-mockup {
-    max-width: 300px;
+    max-width: 200px;
     height: auto;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
   }
@@ -410,7 +311,6 @@
   .features {
     padding: 8rem 2rem;
     background: var(--bg-light);
-    position: relative;
   }
   
   body.dark .features {
@@ -581,16 +481,109 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    flex-shrink: 0;
   }
   
   .showcase-image {
     animation: float 6s ease-in-out infinite;
+    text-align: center;
   }
   
   .showcase-image img {
+    max-width: 300px;
     width: 100%;
+    height: auto;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
+  }
+  
+  /* INSTAGRAM SECTION */
+  .instagram-section {
+    padding: 8rem 2rem;
+    background: var(--bg-light);
+  }
+  
+  body.dark .instagram-section {
+    background: var(--bg-dark);
+  }
+  
+  .instagram-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .instagram-content h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1.5px;
+  }
+  
+  .instagram-content p {
+    font-size: 1.2rem;
+    color: #6e6e73;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+  
+  body.dark .instagram-content p {
+    color: #a1a1a6;
+  }
+  
+  .instagram-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 1.5rem 3rem;
     border-radius: 30px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(188, 24, 136, 0.3);
+  }
+  
+  .instagram-handle:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(188, 24, 136, 0.4);
+  }
+  
+  .instagram-icon {
+    font-size: 2rem;
+  }
+  
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .instagram-post {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .instagram-post:hover {
+    transform: scale(1.05) rotate(2deg);
+  }
+  
+  @media (max-width: 768px) {
+    .instagram-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
   
   /* STATS SECTION */
@@ -684,6 +677,7 @@
     gap: 2rem;
     justify-content: center;
     margin-top: 1.5rem;
+    flex-wrap: wrap;
   }
   
   .footer-links a {
@@ -701,40 +695,13 @@
     opacity: 0.7;
   }
   
-  /* Scroll animations */
-  .fade-in {
-    opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
-  }
-  
-  .fade-in.visible {
-    animation: fadeInUp 0.8s ease forwards;
-  }
-  
-  /* Mobile Menu */
-  .mobile-menu {
-    display: none;
-  }
-  
   @media (max-width: 768px) {
-    .nav-links {
+    .nav-links a {
       display: none;
     }
     
-    .mobile-menu {
+    .nav-links a:last-of-type {
       display: block;
-    }
-    
-    .hamburger {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-light);
-    }
-    
-    body.dark .hamburger {
-      color: var(--text-dark);
     }
   }
 </style>
@@ -749,155 +716,20 @@
       <div class="nav-links">
         <a href="#features">Funzionalità</a>
         <a href="#showcase">Scopri</a>
+        <a href="#instagram">Instagram</a>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-      </div>
-      <div class="mobile-menu">
-        <button class="hamburger">☰</button>
       </div>
     </div>
   </nav>
 
   <!-- HERO SECTION -->
   <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-shape shape-1"></div>
-      <div class="hero-shape shape-2"></div>
-      <div class="hero-shape shape-3"></div>
-    </div>
-    
-    <div class="hero-content">
-      <h1>MultiFermi</h1>
-      <div class="hero-tagline">
-        <span>better.</span>
-        <span>smarter.</span>
-        <span>braver.</span>
-      </div>
-      <p>La tua scuola, reimaginata. Orari, variazioni e Moodle in un'unica app intelligente.</p>
-      
-      <div class="hero-buttons">
-        <div class="coming-soon-badge">
-          <span class="badge-icon">🚀</span>
-          <span class="badge-text">Coming Soon</span>
-        </div>
-        <a href="#features" class="btn-secondary">Scopri di Più</a>
-      </div>
-      
-      <div class="hero-image">
-        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi App" class="phone-mockup">
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES SECTION -->
-  <section class="features" id="features">
-    <div class="section-header fade-in">
-      <span class="section-tag">Funzionalità</span>
-      <h2>Tutto ciò di cui hai bisogno.<br>In un unico posto.</h2>
-      <p>MultiFermi combina potenza e semplicità per offrirti la migliore esperienza scolastica possibile.</p>
-    </div>
-    
-    <div class="features-grid">
-      <div class="feature-card fade-in">
-        <div class="feature-icon">📅</div>
-        <h3>Orario Intelligente</h3>
-        <p>Visualizza il tuo orario con indicatori in tempo reale. Lezione corrente evidenziata in rosso, prossima in verde.</p>
-      </div>
-      
-      <div class="feature-card fade-in">
-        <div class="feature-icon">⚡</div>
-        <h3>Widget Istantaneo</h3>
-        <p>Vedi subito cosa stai facendo ora e cosa avrai dopo. Sempre aggiornato, sempre preciso.</p>
-      </div>
-      
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🔐</div>
-        <h3>Sicuro e Personale</h3>
-        <p>Account protetti da password. I tuoi dati sono al sicuro e accessibili solo a te.</p>
-      </div>
-      
-      <div class="feature-card fade-in">
-        <div class="feature-icon">⚠️</div>
-        <h3>Variazioni Orario</h3>
-        <p>Resta aggiornato su tutte le modifiche all'orario direttamente dal calendario Google della scuola.</p>
-      </div>
-      
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🎓</div>
-        <h3>Moodle Integrato</h3>
-        <p>Accedi alla piattaforma Moodle senza uscire dall'app. Tutto a portata di tap.</p>
-      </div>
-      
-      <div class="feature-card fade-in">
-        <div class="feature-icon">🌙</div>
-        <h3>Dark Mode</h3>
-        <p>Modalità scura elegante per studiare anche di sera senza affaticare gli occhi.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SHOWCASE SECTION -->
-  <section class="showcase" id="showcase">
-    <div class="showcase-content">
-      <div class="showcase-text">
-        <h2>Design iOS.<br>Velocità Android.</h2>
-        <p>MultiFermi è stato progettato con lo stesso livello di attenzione ai dettagli dei migliori prodotti Apple, ma funziona perfettamente su qualsiasi dispositivo.</p>
-        
-        <ul class="showcase-features">
-          <li>Animazioni fluide e naturali</li>
-          <li>Interfaccia intuitiva e moderna</li>
-          <li>Glassmorphism e gradienti accattivanti</li>
-          <li>Performance ottimizzate</li>
-          <li>Esperienza utente premium</li>
-        </ul>
-        
-        <div class="coming-soon-badge" style="display: inline-block;">
-          <span class="badge-icon">🚀</span>
-          <span class="badge-text">Coming Soon</span>
-        </div>
-      </div>
-      
-      <div class="showcase-image">
-        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Interface">
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS SECTION -->
-  <section class="stats">
-    <div class="stats-grid">
-      <div class="stat-item fade-in">
-        <h3>14+</h3>
-        <p>Classi Supportate</p>
-      </div>
-      
-      <div class="stat-item fade-in">
-        <h3>3</h3>
-        <p>Funzionalità Principali</p>
-      </div>
-      
-      <div class="stat-item fade-in">
-        <h3>100%</h3>
-        <p>Gratuito</p>
-      </div>
-      
-      <div class="stat-item fade-in">
-        <h3>24/7</h3>
-        <p>Sempre Disponibile</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="cta-section" id="download">
-    <h2>Pronto a rivoluzionare<br>la tua esperienza scolastica?</h2>
-    <p>Scarica MultiFermi oggi e scopri un modo completamente nuovo di vivere la scuola.</p>
-    
     <div class="hero-buttons">
       <div class="coming-soon-badge">
         <span class="badge-icon">🚀</span>
         <span class="badge-text">Coming Soon</span>
       </div>
-      <a href="#features" class="btn-secondary">Scopri di Più</a>
+      <a href="#instagram" class="btn-secondary">Seguici su Instagram</a>
     </div>
   </section>
 
@@ -905,10 +737,10 @@
   <footer>
     <p>&copy; 2025 MultiFermi. Progettato con ❤️ per l'Istituto Fermi di Mantova.</p>
     <div class="footer-links">
+      <a href="https://instagram.com/multifermi" target="_blank">Instagram</a>
       <a href="#">Privacy</a>
       <a href="#">Termini</a>
       <a href="#">Supporto</a>
-      <a href="#">GitHub</a>
     </div>
   </footer>
 
@@ -937,24 +769,6 @@
       }
     });
     
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
-    });
-    
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -970,4 +784,158 @@
     });
   </script>
 </body>
-  </html>
+</html>shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+    <div class="hero-shape shape-3"></div>
+    
+    <div class="hero-content">
+      <h1>MultiFermi</h1>
+      <div class="hero-tagline">
+        <span>better.</span>
+        <span>smarter.</span>
+        <span>braver.</span>
+      </div>
+      <p>La tua scuola, reimaginata. Orari, variazioni e Moodle in un'unica app intelligente.</p>
+      
+      <div class="hero-buttons">
+        <div class="coming-soon-badge">
+          <span class="badge-icon">🚀</span>
+          <span class="badge-text">Coming Soon</span>
+        </div>
+        <a href="#features" class="btn-secondary">Scopri di Più</a>
+      </div>
+      
+      <div class="hero-image">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi App" class="phone-mockup">
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <span class="section-tag">Funzionalità</span>
+      <h2>Tutto ciò di cui hai bisogno.<br>In un unico posto.</h2>
+      <p>MultiFermi combina potenza e semplicità per offrirti la migliore esperienza scolastica possibile.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Orario Intelligente</h3>
+        <p>Visualizza il tuo orario con indicatori in tempo reale. Lezione corrente evidenziata in rosso, prossima in verde.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Widget Istantaneo</h3>
+        <p>Vedi subito cosa stai facendo ora e cosa avrai dopo. Sempre aggiornato, sempre preciso.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>Sicuro e Personale</h3>
+        <p>Account protetti da password. I tuoi dati sono al sicuro e accessibili solo a te.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚠️</div>
+        <h3>Variazioni Orario</h3>
+        <p>Resta aggiornato su tutte le modifiche all'orario direttamente dal calendario Google della scuola.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3>Moodle Integrato</h3>
+        <p>Accedi alla piattaforma Moodle senza uscire dall'app. Tutto a portata di tap.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Modalità scura elegante per studiare anche di sera senza affaticare gli occhi.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE SECTION -->
+  <section class="showcase" id="showcase">
+    <div class="showcase-content">
+      <div class="showcase-text">
+        <h2>Design iOS.<br>Velocità Android.</h2>
+        <p>MultiFermi è stato progettato con lo stesso livello di attenzione ai dettagli dei migliori prodotti Apple, ma funziona perfettamente su qualsiasi dispositivo.</p>
+        
+        <ul class="showcase-features">
+          <li>Animazioni fluide e naturali</li>
+          <li>Interfaccia intuitiva e moderna</li>
+          <li>Glassmorphism e gradienti accattivanti</li>
+          <li>Performance ottimizzate</li>
+          <li>Esperienza utente premium</li>
+        </ul>
+        
+        <div class="coming-soon-badge" style="display: inline-flex; margin-top: 2rem;">
+          <span class="badge-icon">🚀</span>
+          <span class="badge-text">Coming Soon</span>
+        </div>
+      </div>
+      
+      <div class="showcase-image">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Interface">
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM SECTION -->
+  <section class="instagram-section" id="instagram">
+    <div class="instagram-content">
+      <span class="section-tag">Seguici</span>
+      <h2>Resta Aggiornato</h2>
+      <p>Segui @multifermi su Instagram per novità, aggiornamenti e anteprime esclusive dell'app!</p>
+      
+      <a href="https://instagram.com/multifermi" target="_blank" class="instagram-handle">
+        <span class="instagram-icon">📸</span>
+        <span>@multifermi</span>
+      </a>
+      
+      <div class="instagram-grid">
+        <div class="instagram-post">📱</div>
+        <div class="instagram-post">🎨</div>
+        <div class="instagram-post">✨</div>
+        <div class="instagram-post">🚀</div>
+        <div class="instagram-post">💡</div>
+        <div class="instagram-post">🎯</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>14+</h3>
+        <p>Classi Supportate</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>3</h3>
+        <p>Funzionalità Principali</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Gratuito</p>
+      </div>
+      
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <p>Sempre Disponibile</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <h2>Pronto a rivoluzionare<br>la tua esperienza scolastica?</h2>
+    <p>MultiFermi sta arrivando. Seguici su Instagram per essere tra i primi a provarlo!</p>
+    
+    <div class="hero-
