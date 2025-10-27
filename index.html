@@ -16,8 +16,6 @@
     --primary-dark: #0a84ff;
     --text-light: #1d1d1f;
     --text-dark: #f5f5f7;
-    --bg-light: #ffffff;
-    --bg-dark: #000000;
   }
   
   @keyframes float {
@@ -26,19 +24,8 @@
   }
   
   @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   
   @keyframes gradient {
@@ -55,11 +42,10 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     background: #ffffff;
     color: var(--text-light);
     overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
   }
   
   body.dark {
@@ -67,7 +53,6 @@
     color: var(--text-dark);
   }
   
-  /* NAVIGATION */
   nav {
     position: fixed;
     top: 0;
@@ -76,7 +61,6 @@
     z-index: 1000;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
   }
@@ -105,12 +89,7 @@
     gap: 0.8rem;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-light);
     letter-spacing: -1px;
-  }
-  
-  body.dark .logo {
-    color: var(--text-dark);
   }
   
   .logo-img {
@@ -126,15 +105,10 @@
   
   .nav-links a {
     text-decoration: none;
-    color: var(--text-light);
+    color: inherit;
     font-weight: 500;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    position: relative;
-  }
-  
-  body.dark .nav-links a {
-    color: var(--text-dark);
   }
   
   .nav-links a:hover {
@@ -163,7 +137,6 @@
     transform: scale(1.1) rotate(15deg);
   }
   
-  /* HERO SECTION */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -174,14 +147,13 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     background-size: 200% 200%;
     animation: gradient 15s ease infinite;
-    padding-top: 80px;
+    padding: 120px 20px 60px;
   }
   
   .hero-shape {
     position: absolute;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
   }
   
   .shape-1 {
@@ -200,20 +172,10 @@
     animation: float 6s ease-in-out infinite 1s;
   }
   
-  .shape-3 {
-    width: 400px;
-    height: 400px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 4s ease-in-out infinite;
-  }
-  
   .hero-content {
     text-align: center;
     z-index: 2;
     max-width: 900px;
-    padding: 2rem;
     animation: fadeInUp 1s ease;
   }
   
@@ -223,7 +185,6 @@
     margin-bottom: 1rem;
     color: white;
     letter-spacing: -2px;
-    line-height: 1.1;
   }
   
   .hero-tagline {
@@ -270,11 +231,6 @@
   
   .badge-icon {
     font-size: 1.3rem;
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  .badge-text {
-    letter-spacing: 0.5px;
   }
   
   .btn-secondary {
@@ -286,7 +242,7 @@
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     display: inline-block;
     border: 2px solid rgba(255, 255, 255, 0.3);
   }
@@ -307,14 +263,13 @@
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
   }
   
-  /* FEATURES SECTION */
   .features {
     padding: 8rem 2rem;
-    background: var(--bg-light);
+    background: #ffffff;
   }
   
   body.dark .features {
-    background: var(--bg-dark);
+    background: #000000;
   }
   
   .section-header {
@@ -332,12 +287,7 @@
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 1rem;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
-  }
-  
-  body.dark .section-tag {
-    color: var(--primary-dark);
   }
   
   .section-header h2 {
@@ -345,7 +295,6 @@
     font-weight: 800;
     margin-bottom: 1.5rem;
     letter-spacing: -1.5px;
-    line-height: 1.2;
   }
   
   .section-header p {
@@ -370,7 +319,7 @@
     background: white;
     padding: 3rem 2rem;
     border-radius: 30px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s ease;
     border: 1px solid rgba(0, 0, 0, 0.04);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   }
@@ -395,11 +344,6 @@
     justify-content: center;
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    transition: all 0.3s ease;
-  }
-  
-  .feature-card:hover .feature-icon {
-    transform: scale(1.1) rotate(5deg);
   }
   
   .feature-card h3 {
@@ -412,19 +356,15 @@
   .feature-card p {
     color: #6e6e73;
     line-height: 1.7;
-    font-size: 1rem;
   }
   
   body.dark .feature-card p {
     color: #a1a1a6;
   }
   
-  /* SHOWCASE SECTION */
   .showcase {
     padding: 8rem 2rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    position: relative;
-    overflow: hidden;
   }
   
   .showcase-content {
@@ -492,18 +432,16 @@
   .showcase-image img {
     max-width: 300px;
     width: 100%;
-    height: auto;
     filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
   }
   
-  /* INSTAGRAM SECTION */
   .instagram-section {
     padding: 8rem 2rem;
-    background: var(--bg-light);
+    background: #ffffff;
   }
   
   body.dark .instagram-section {
-    background: var(--bg-dark);
+    background: #000000;
   }
   
   .instagram-content {
@@ -550,10 +488,6 @@
     box-shadow: 0 15px 50px rgba(188, 24, 136, 0.4);
   }
   
-  .instagram-icon {
-    font-size: 2rem;
-  }
-  
   .instagram-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -573,7 +507,6 @@
     justify-content: center;
     font-size: 3rem;
     transition: all 0.3s ease;
-    cursor: pointer;
   }
   
   .instagram-post:hover {
@@ -586,14 +519,13 @@
     }
   }
   
-  /* STATS SECTION */
   .stats {
     padding: 6rem 2rem;
-    background: var(--bg-light);
+    background: #ffffff;
   }
   
   body.dark .stats {
-    background: var(--bg-dark);
+    background: #000000;
   }
   
   .stats-grid {
@@ -624,13 +556,10 @@
     color: #a1a1a6;
   }
   
-  /* CTA SECTION */
   .cta-section {
     padding: 8rem 2rem;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
     text-align: center;
-    position: relative;
-    overflow: hidden;
   }
   
   .cta-section h2 {
@@ -650,16 +579,15 @@
     margin-right: auto;
   }
   
-  /* FOOTER */
   footer {
-    background: var(--bg-light);
+    background: #ffffff;
     padding: 3rem 2rem;
     text-align: center;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
   
   body.dark footer {
-    background: var(--bg-dark);
+    background: #000000;
     border-top-color: rgba(255, 255, 255, 0.1);
   }
   
@@ -687,22 +615,8 @@
     transition: all 0.3s ease;
   }
   
-  body.dark .footer-links a {
-    color: var(--primary-dark);
-  }
-  
   .footer-links a:hover {
     opacity: 0.7;
-  }
-  
-  @media (max-width: 768px) {
-    .nav-links a {
-      display: none;
-    }
-    
-    .nav-links a:last-of-type {
-      display: block;
-    }
   }
 </style>
 </head>
@@ -710,83 +624,20 @@
   <nav id="navbar">
     <div class="nav-content">
       <div class="logo">
-        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Logo" class="logo-img">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi" class="logo-img">
         <span>MultiFermi</span>
       </div>
       <div class="nav-links">
         <a href="#features">Funzionalità</a>
-        <a href="#showcase">Scopri</a>
         <a href="#instagram">Instagram</a>
         <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
   <section class="hero">
-    <div class="hero-buttons">
-      <div class="coming-soon-badge">
-        <span class="badge-icon">🚀</span>
-        <span class="badge-text">Coming Soon</span>
-      </div>
-      <a href="#instagram" class="btn-secondary">Seguici su Instagram</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>&copy; 2025 MultiFermi. Progettato con ❤️ per l'Istituto Fermi di Mantova.</p>
-    <div class="footer-links">
-      <a href="https://instagram.com/multifermi" target="_blank">Instagram</a>
-      <a href="#">Privacy</a>
-      <a href="#">Termini</a>
-      <a href="#">Supporto</a>
-    </div>
-  </footer>
-
-  <script>
-    // Theme Toggle
-    function toggleTheme() {
-      document.body.classList.toggle('dark');
-      const themeBtn = document.querySelector('.theme-toggle');
-      themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-    }
-    
-    // Load saved theme
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
-      document.querySelector('.theme-toggle').textContent = '☀️';
-    }
-    
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-    
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-  </script>
-</body>
-</html>shape shape-1"></div>
+    <div class="hero-shape shape-1"></div>
     <div class="hero-shape shape-2"></div>
-    <div class="hero-shape shape-3"></div>
     
     <div class="hero-content">
       <h1>MultiFermi</h1>
@@ -806,12 +657,11 @@
       </div>
       
       <div class="hero-image">
-        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi App" class="phone-mockup">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi" class="phone-mockup">
       </div>
     </div>
   </section>
 
-  <!-- FEATURES SECTION -->
   <section class="features" id="features">
     <div class="section-header">
       <span class="section-tag">Funzionalità</span>
@@ -858,8 +708,7 @@
     </div>
   </section>
 
-  <!-- SHOWCASE SECTION -->
-  <section class="showcase" id="showcase">
+  <section class="showcase">
     <div class="showcase-content">
       <div class="showcase-text">
         <h2>Design iOS.<br>Velocità Android.</h2>
@@ -873,19 +722,18 @@
           <li>Esperienza utente premium</li>
         </ul>
         
-        <div class="coming-soon-badge" style="display: inline-flex; margin-top: 2rem;">
+        <div class="coming-soon-badge" style="margin-top: 2rem;">
           <span class="badge-icon">🚀</span>
           <span class="badge-text">Coming Soon</span>
         </div>
       </div>
       
       <div class="showcase-image">
-        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi Interface">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi">
       </div>
     </div>
   </section>
 
-  <!-- INSTAGRAM SECTION -->
   <section class="instagram-section" id="instagram">
     <div class="instagram-content">
       <span class="section-tag">Seguici</span>
@@ -893,7 +741,7 @@
       <p>Segui @multifermi su Instagram per novità, aggiornamenti e anteprime esclusive dell'app!</p>
       
       <a href="https://instagram.com/multifermi" target="_blank" class="instagram-handle">
-        <span class="instagram-icon">📸</span>
+        <span>📸</span>
         <span>@multifermi</span>
       </a>
       
@@ -908,24 +756,20 @@
     </div>
   </section>
 
-  <!-- STATS SECTION -->
   <section class="stats">
     <div class="stats-grid">
       <div class="stat-item">
         <h3>14+</h3>
         <p>Classi Supportate</p>
       </div>
-      
       <div class="stat-item">
         <h3>3</h3>
         <p>Funzionalità Principali</p>
       </div>
-      
       <div class="stat-item">
         <h3>100%</h3>
         <p>Gratuito</p>
       </div>
-      
       <div class="stat-item">
         <h3>24/7</h3>
         <p>Sempre Disponibile</p>
@@ -933,9 +777,60 @@
     </div>
   </section>
 
-  <!-- CTA SECTION -->
   <section class="cta-section">
     <h2>Pronto a rivoluzionare<br>la tua esperienza scolastica?</h2>
     <p>MultiFermi sta arrivando. Seguici su Instagram per essere tra i primi a provarlo!</p>
     
-    <div class="hero-
+    <div class="hero-buttons">
+      <div class="coming-soon-badge">
+        <span class="badge-icon">🚀</span>
+        <span class="badge-text">Coming Soon</span>
+      </div>
+      <a href="#instagram" class="btn-secondary">Seguici su Instagram</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MultiFermi. Progettato con ❤️ per l'Istituto Fermi di Mantova.</p>
+    <div class="footer-links">
+      <a href="https://instagram.com/multifermi" target="_blank">Instagram</a>
+      <a href="#">Privacy</a>
+      <a href="#">Termini</a>
+      <a href="#">Supporto</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.theme-toggle');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+    
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+      document.querySelector('.theme-toggle').textContent = '☀️';
+    }
+    
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
