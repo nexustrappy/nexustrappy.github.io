@@ -199,6 +199,45 @@
     display: block;
     line-height: 1.3;
   }
+
+  /* Blur / scramble text effect styles */
+  .blur-text { display: inline-block; }
+  .blur-char {
+    display: inline-block;
+    filter: blur(6px);
+    transform: translateY(6px);
+    opacity: 0.6;
+    transition: filter 0.35s ease, transform 0.35s ease, opacity 0.35s ease;
+    will-change: filter, transform, opacity;
+  }
+  .blur-char.reveal {
+    filter: blur(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .blur-phrase {
+    display: inline-block;
+    margin-left: 0.7rem;
+    filter: blur(6px);
+    opacity: 0.6;
+    transform: translateY(6px);
+    transition: filter 0.45s ease, opacity 0.45s ease, transform 0.35s ease;
+  }
+  .blur-phrase.reveal {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blur-char, .blur-phrase {
+      transition: none !important;
+      filter: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+  }
   
   .hero p {
     font-size: clamp(1.2rem, 3vw, 1.5rem);
@@ -640,12 +679,16 @@
     <div class="hero-shape shape-2"></div>
     
     <div class="hero-content">
-      <h1>MultiFermi</h1>
-      <div class="hero-tagline">
-        <span>better.</span>
-        <span>smarter.</span>
-        <span>braver.</span>
+      <!-- Animated blur/scramble title -->
+      <h1 id="hero-title" class="blur-text">MultiFermi</h1>
+
+      <!-- Animated tagline: each word will be revealed after the title -->
+      <div class="hero-tagline" id="hero-tagline">
+        <span class="blur-phrase">better.</span>
+        <span class="blur-phrase">smarter.</span>
+        <span class="blur-phrase">braver.</span>
       </div>
+
       <p>La tua scuola, reimaginata. Orari, variazioni e Moodle in un'unica app intelligente.</p>
       
       <div class="hero-buttons">
@@ -831,6 +874,83 @@
         }
       });
     });
+
+    /* Blur / scramble text animation (plain JS, no dependencies) */
+    (function(){
+      const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*';
+
+      function scrambleSpan(span, duration){
+        const real = span.dataset.real;
+        const interval = 30;
+        let elapsed = 0;
+        const id = setInterval(()=>{
+          elapsed += interval;
+          span.textContent = letters[Math.floor(Math.random()*letters.length)];
+          if(elapsed >= duration){
+            clearInterval(id);
+            span.textContent = real;
+            span.classList.add('reveal');
+          }
+        }, interval);
+      }
+
+      function animateTitle(id, opts){
+        const el = document.getElementById(id);
+        if(!el) return;
+        const text = el.textContent || '';
+        el.textContent = '';
+        const chars = Array.from(text);
+        chars.forEach(ch => {
+          const span = document.createElement('span');
+          span.className = 'blur-char';
+          span.dataset.real = ch;
+          // use a random glyph as placeholder to make the scramble visible
+          span.textContent = ch === ' ' ? ' ' : letters[Math.floor(Math.random()*letters.length)];
+          el.appendChild(span);
+        });
+        const spans = el.querySelectorAll('.blur-char');
+        spans.forEach((span, i) => {
+          const delay = (opts && opts.delayPerChar) ? opts.delayPerChar * i : 45 * i;
+          setTimeout(()=>{
+            scrambleSpan(span, 500 + Math.random()*300);
+          }, delay);
+        });
+      }
+
+      function animateTagline(containerId, opts){
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        const phrases = container.querySelectorAll('.blur-phrase');
+        phrases.forEach((phrase, idx) => {
+          const real = phrase.textContent;
+          phrase.dataset.real = real;
+          // initial scrambled glyphs
+          phrase.textContent = real.replace(/\S/g, ()=> letters[Math.floor(Math.random()*letters.length)]);
+          const startDelay = (opts && opts.startDelay) ? opts.startDelay : 900;
+          setTimeout(()=>{
+            const interval = 35;
+            const duration = 650;
+            let elapsed = 0;
+            const id = setInterval(()=>{
+              elapsed += interval;
+              phrase.textContent = real.replace(/\S/g, ()=> letters[Math.floor(Math.random()*letters.length)]);
+              if(elapsed >= duration){
+                clearInterval(id);
+                phrase.textContent = real;
+                phrase.classList.add('reveal');
+              }
+            }, interval);
+          }, startDelay + idx * 220);
+        });
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+        try {
+          animateTitle('hero-title', { delayPerChar: 45 });
+          animateTagline('hero-tagline', { startDelay: 900 });
+        } catch (e) { /* fail gracefully */ }
+      });
+    })();
   </script>
 </body>
 </html>
