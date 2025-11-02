@@ -1,52 +1,394 @@
-   <h1><strong>Privacy policy di [</strong><a href="http://www.testsite.com/"><strong>www.testsite.com</strong></a><strong>]</strong></h1>
-<p> Ultimo aggiornamento: [data]</p>
-<p>Siamo [Nome dell’azienda]. Questa privacy policy descrive come raccogliamo, utilizziamo e proteggiamo le tue informazioni personali quando utilizzi i nostri servizi.</p>
-<p>Ci puoi contattare a [indirizzo email].</p>
-<hr>
-<h2><strong>Indice</strong></h2>
-<ul>
-<li>Introduzione</li>
-<li>Informazioni di contatto</li>
-<li>Tipologie di dati raccolti</li>
-<li>Modalità e luogo del trattamento dei dati personali</li>
-<li>Informazioni dettagliate sul trattamento dei dati personali</li>
-<li>Ulteriori informazioni </li>
-<li>I tuoi diritti in base al Regolamento Generale sulla Protezione dei Dati (GDPR)</li>
-<li>Ulteriori informazioni se la tua sede è in Svizzera</li>
-<li>Ulteriori informazioni se la tua sede è in Brasile</li>
-<li>Ulteriori informazioni se la tua sede è in California</li>
-<li>Ulteriori informazioni se la tua sede è in Virginia</li>
-<li>Ulteriori informazioni se la tua sede è in Colorado</li>
-<li>Ulteriori informazioni se la tua sede è in Connecticut</li>
-<li>Ulteriori informazioni se la tua sede è in Utah</li>
-<li>Ulteriori informazioni sul trattamento e la raccolta dei dati</li>
-<li>Definizioni e riferimenti legali</li>
-</ul>
-<hr>
-<h2><strong>Introduzione</strong></h2>
-<p><strong>Cosa contiene questa policy?</strong>
- Il presente documento spiega come questo sito web raccoglie, utilizza e protegge i tuoi dati personali per raggiungere le finalità delineate.</p>
-<p><strong>Cosa sono i dati personali?</strong>
- I dati personali sono informazioni che possono essere utilizzate per identificarti direttamente o indirettamente, come nome, cognome, e-mail, tecnologie di tracciamento (ad esempio cookie o pixel di tracciamento), attività e informazioni sul dispositivo utilizzato. Puoi trovare informazioni dettagliate sui tipi di dati raccolti nelle sezioni dedicate di questa privacy policy o nei messaggi mostrati prima della raccolta.</p>
-<p> Questo documento è stato creato utilizzando un <a href="https://www.iubenda.com/it/help/105832">modello di informativa privacy.</a></p>
-<hr>
-<h2><strong>Informazioni di contatto</strong></h2>
-<p><strong>Indirizzo:</strong>
-[Via]
-[Città, CAP]
-[Stato]</p>
-<p><strong>E-mail:</strong> [indirizzo e-mail]</p>
-<p><strong>Telefono:</strong> [numero di telefono]</p>
-<hr>
-<h2><strong>Tipologie di dati raccolti</strong></h2>
-<p> I dati personali raccolti da questo sito, in modo autonomo o tramite terze parti, possono includere:</p>
-<ul>
-<li>nome; </li>
-<li>cognome; </li>
-<li>indirizzo e-mail; </li>
-<li>strumenti di tracciamento; </li>
-<li>dati di utilizzo</li>
-</ul>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Privacy Policy di MultiFermi - Scopri come proteggiamo i tuoi dati personali">
+<title>MultiFermi - Privacy Policy</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --primary: #4CAF50;
+    --secondary: #45a049;
+    --text-light: #1d1d1f;
+    --text-dark: #f5f5f7;
+    --card-bg-light: #f9f9f9;
+    --card-bg-dark: #1e1e1e;
+  }
+  
+  body {
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+    line-height: 1.6;
+  }
+  
+  body.dark {
+    --background-color: #121212;
+    --text-color: var(--text-dark);
+    --nav-bg: rgba(18, 18, 18, 0.95);
+    --card-bg: var(--card-bg-dark);
+  }
+  
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  nav.scrolled {
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--primary);
+    transition: all 0.3s ease;
+  }
+  
+  .logo:hover {
+    opacity: 0.9;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover .logo-img {
+    transform: scale(1.05);
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-links a:hover {
+    color: var(--primary);
+  }
+  
+  .theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  
+  body.dark .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+  }
+  
+  .privacy-content {
+    max-width: 1000px;
+    margin: 120px auto 60px;
+    padding: 0 2rem;
+  }
+  
+  .privacy-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding-top: 2rem;
+  }
+  
+  .privacy-header h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -1.5px;
+    color: var(--primary);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .privacy-header p {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+  
+  .privacy-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .privacy-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .privacy-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .privacy-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--secondary);
+    border-radius: 2px;
+  }
+  
+  .privacy-section h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    color: var(--secondary);
+  }
+  
+  .privacy-section p {
+    margin-bottom: 1.2rem;
+    color: var(--text-color);
+    line-height: 1.8;
+  }
+  
+  .privacy-section ul {
+    margin: 1.2rem 0;
+    list-style-type: none;
+  }
+  
+  .privacy-section li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .privacy-section li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+  }
+  
+  .privacy-section a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--primary);
+    transition: all 0.3s ease;
+  }
+  
+  .privacy-section a:hover {
+    opacity: 0.8;
+    border-bottom-style: solid;
+  }
+  
+  footer {
+    background: var(--card-bg);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    margin-top: 4rem;
+  }
+  
+  footer p {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: transparent;
+  }
+  
+  .footer-links a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  body.dark .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
+    background: var(--primary);
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-content {
+      padding: 1rem;
+    }
+    
+    .privacy-section {
+      padding: 1.5rem;
+    }
+    
+    .privacy-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .footer-links {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .footer-links a {
+      width: 100%;
+      padding: 0.8rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-content">
+      <a href="/" class="logo">
+        <img src="https://i.ibb.co/5hYfcV0T/1000055624-removebg-preview.png" alt="MultiFermi" class="logo-img">
+        <span>MultiFermi</span>
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="privacy-content">
+    <div class="privacy-header">
+      <h1>Privacy Policy</h1>
+      <p>Ultimo aggiornamento: 2 Novembre 2025</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>Introduzione</h2>
+      <p>Questa privacy policy descrive come MultiFermi raccoglie, utilizza e protegge le tue informazioni personali quando utilizzi i nostri servizi.</p>
+      <p>Puoi contattarci all'indirizzo email: privacy@multifermi.app</p>
+    </div>
+    <div class="privacy-section">
+      <h2>Tipologie di dati raccolti</h2>
+      <p>I dati personali raccolti da MultiFermi, in modo autonomo o tramite terze parti, possono includere:</p>
+      <ul>
+        <li>Nome e cognome</li>
+        <li>Indirizzo email</li>
+        <li>Strumenti di tracciamento</li>
+        <li>Dati di utilizzo dell'app</li>
+        <li>Informazioni sul dispositivo</li>
+      </ul>
+      <p>I dati personali possono essere forniti volontariamente da te o raccolti automaticamente durante l'uso dei nostri servizi.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>Modalità e luogo del trattamento</h2>
+      <h3>Modalità di trattamento</h3>
+      <p>Adottiamo le opportune misure di sicurezza per impedire l'accesso, la divulgazione, la modifica o la distruzione non autorizzate dei tuoi dati personali. Il trattamento viene effettuato mediante strumenti informatici e/o telematici, con modalità organizzative e logiche strettamente correlate alle finalità indicate.</p>
+      
+      <h3>Accesso ai dati</h3>
+      <p>Oltre al nostro team, in alcuni casi, potrebbero avere accesso ai dati altri soggetti coinvolti nell'organizzazione (personale amministrativo, sviluppatori, team di supporto). Possono inoltre avere accesso ai dati soggetti esterni nominati, se necessario, responsabili del trattamento.</p>
+      
+      <h3>Luogo del trattamento</h3>
+      <p>I dati sono trattati presso le nostre sedi operative e in ogni altro luogo in cui le parti coinvolte nel trattamento siano localizzate. I tuoi dati potrebbero essere trasferiti in un paese diverso da quello in cui ti trovi, sempre nel rispetto delle normative vigenti sulla protezione dei dati.</p>
+      
+      <h3>Periodo di conservazione</h3>
+      <p>I dati personali sono trattati e conservati per il tempo necessario allo svolgimento del servizio richiesto e potrebbero essere conservati per un periodo più lungo in caso di obblighi legali o sulla base del tuo consenso esplicito.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2>Cookie e strumenti di tracciamento</h2>
+      <p>L'utilizzo di cookie o altri strumenti di tracciamento ha la finalità di:</p>
+      <ul>
+        <li>Fornire il servizio da te richiesto</li>
+        <li>Migliorare l'esperienza d'uso dell'app</li>
+        <li>Analizzare l'utilizzo dei nostri servizi</li>
+        <li>Personalizzare i contenuti in base alle tue preferenze</li>
+      </ul>
+      <p>Puoi gestire le tue preferenze sui cookie attraverso le impostazioni del tuo browser.</p>
+    </div>
 <p>Dettagli completi su ciascuna tipologia di dati personali raccolti sono forniti nelle sezioni dedicate di questa privacy policy o mediante specifici testi informativi visualizzati prima della raccolta dei dati stessi. I dati personali possono essere liberamente forniti da te o, nel caso di dati di utilizzo, raccolti automaticamente durante l&#39;uso di questo sito web. Se non diversamente specificato, tutti i dati richiesti da questo sito web sono obbligatori. Il rifiuto di comunicarli potrebbe impedire a questo sito web di fornire i propri servizi.
 Nei casi in cui questo sito web indichi alcuni dati come facoltativi, sei libero di astenerti dal comunicare tali dati, senza che ciò abbia alcuna conseguenza sulla disponibilità del servizio o sulla sua operatività.</p>
 <p> L’eventuale utilizzo di cookie - o di altri strumenti di tracciamento - da parte di questo sito web o dei titolari dei servizi terzi utilizzati da questo sito web ha la finalità di fornire il servizio da te richiesto, oltre alle ulteriori finalità descritte nel presente documento.</p>
